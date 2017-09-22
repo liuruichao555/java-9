@@ -12,8 +12,6 @@ import java.net.URI;
  * @author liuruichao
  * Created on 2017/9/22 11:09
  */
-
-
 public class Test1 {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
