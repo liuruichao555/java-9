@@ -11,7 +11,7 @@ import java.io.InputStream;
  */
 public class Test1 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Process proc = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo $PPID"});
+        /*Process proc = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo $PPID"});
         if (proc.waitFor() == 0) {
             InputStream in = proc.getInputStream();
             int available = in.available();
@@ -19,6 +19,17 @@ public class Test1 {
             int len = in.read(buffer);
             String pid = new String(buffer, 0, len);
             System.out.println("pid: " + pid);
+        }*/
+        Process proc = Runtime.getRuntime().exec("pwd");
+        if (proc.waitFor() == 0) {
+            InputStream in = proc.getInputStream();
+            byte[] buffer = new byte[1024];
+            StringBuilder sbu = new StringBuilder();
+            int len = -1;
+            while ((len = in.read(buffer)) != -1) {
+                sbu.append(new String(buffer, 0, len));
+            }
+            System.out.println(sbu.toString());
         }
     }
 }
