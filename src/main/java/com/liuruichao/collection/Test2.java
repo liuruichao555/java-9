@@ -2,6 +2,7 @@ package com.liuruichao.collection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Test2
@@ -20,9 +21,19 @@ public class Test2 {
             list.add(new Person(i, "buzhidao_" + i, 50 + i));
         }
 
+        System.out.println("---------------test1 begin");
         list.stream()
                 .dropWhile(person -> person.id < 10) // 删除id小于10
                 .forEach(System.out::println);
+        System.out.println("---------------test1 end");
+
+        System.out.println();
+
+        System.out.println("---------------test2 begin");
+        list.stream()
+                .takeWhile(person -> person.id < 10) // 挑选id小于10
+                .forEach(System.out::println);
+        System.out.println("---------------test2 end");
     }
 
     private static class Person {
