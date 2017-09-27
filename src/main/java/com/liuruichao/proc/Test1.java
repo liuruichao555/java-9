@@ -1,5 +1,7 @@
 package com.liuruichao.proc;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -11,25 +13,16 @@ import java.io.InputStream;
  */
 public class Test1 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        /*Process proc = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo $PPID"});
+        Process proc = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo $PPID"});
         if (proc.waitFor() == 0) {
             InputStream in = proc.getInputStream();
-            int available = in.available();
-            byte[] buffer = new byte[available];
-            int len = in.read(buffer);
-            String pid = new String(buffer, 0, len);
-            System.out.println("pid: " + pid);
-        }*/
-        Process proc = Runtime.getRuntime().exec("pwd");
-        if (proc.waitFor() == 0) {
-            InputStream in = proc.getInputStream();
-            byte[] buffer = new byte[1024];
-            StringBuilder sbu = new StringBuilder();
-            int len = -1;
-            while ((len = in.read(buffer)) != -1) {
-                sbu.append(new String(buffer, 0, len));
-            }
-            System.out.println(sbu.toString());
+            System.out.println(IOUtils.toString(in, "utf-8"));
         }
+
+        /*Process proc = Runtime.getRuntime().exec("pwd");
+        if (proc.waitFor() == 0) {
+            InputStream in = proc.getInputStream();
+            System.out.println(IOUtils.toString(in, "utf-8"));
+        }*/
     }
 }
