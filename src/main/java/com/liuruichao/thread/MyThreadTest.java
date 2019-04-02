@@ -17,14 +17,15 @@ public class MyThreadTest {
     private static class MyThread implements Runnable {
         @Override
         public void run() {
-            while (true) {
-                System.out.println(Instant.now());
+            System.out.println(Thread.currentThread().getName());
+            /*while (true) {
+                System.out.println(Thread.currentThread().getName() + " " + Instant.now());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         }
     }
 }

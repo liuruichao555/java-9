@@ -1,10 +1,10 @@
 package com.liuruichao.http;
 
-import jdk.incubator.http.HttpClient;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
 
 import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 /**
  * Test1
@@ -16,7 +16,8 @@ public class Test1 {
     public static void main(String[] args) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://www.baidu.com")).GET().build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandler.asString());
+        HttpResponse.BodyHandler responseBodyHandler = HttpResponse.BodyHandlers.ofString();
+        HttpResponse<String> response = client.send(request, responseBodyHandler);
         if (response.statusCode() == 200) {
             System.out.println(response.body());
         } else {

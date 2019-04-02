@@ -1,8 +1,7 @@
 package com.liuruichao.websocket;
 
-import jdk.incubator.http.WebSocket;
-
 import java.net.URI;
+import java.net.http.WebSocket;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -21,9 +20,11 @@ public class Test1 {
 
     private static class EchoListener implements WebSocket.Listener {
         @Override
-        public CompletionStage<?> onText(WebSocket webSocket, CharSequence message, WebSocket.MessagePart part) {
+        public CompletionStage<?> onText(WebSocket webSocket,
+                                         CharSequence data,
+                                         boolean las) {
             webSocket.request(1);
-            return CompletableFuture.completedFuture(message).thenAccept(System.out::println);
+            return CompletableFuture.completedFuture(data).thenAccept(System.out::println);
         }
     }
 }

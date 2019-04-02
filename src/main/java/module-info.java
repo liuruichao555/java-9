@@ -1,4 +1,4 @@
 module com.liuruichao.http {
-    requires jdk.incubator.httpclient;
+    requires java.net.http;
     requires commons.io;
 }
